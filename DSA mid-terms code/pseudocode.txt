@@ -1,0 +1,158 @@
+function wordsThatRhyme(word, chosenWord)
+    return word.endsWith(chosenWord) && syllablesCounter(chosenWord) <= 1
+end function
+
+function feminineWords(word, chosenWord)
+    return word.endsWith(chosenWord) && syllablesCounter(chosenWord) > 1
+end function
+
+function exactRhymes(word, chosenWord)
+    return word.endsWith(chosenWord) && word.length === chosenWord.length
+end function
+
+////////////////////////////////////////////////////////////////////////
+********************* PSEUDOCODE (ADS.JS) ***************************
+////////////////////////////////////////////////////////////////////////
+load(wordlist2.txt)
+read(wordlist2.txt)
+
+function wordsThatRhyme(word, chosenWord)
+    if word.endsWith(chosenWord) ⋀ syllablesCounter(chosenWord) <= 1 then
+	    return TRUE
+    end if
+    return FALSE
+end function
+
+function feminineWords(word, chosenWord)
+if word.endsWith(chosenWord) ⋀ syllablesCounter(chosenWord) > 1 then
+	return TRUE
+end if 
+return FALSE
+end function
+
+function exactRhymes(word, chosenWord)
+    if word.endsWith(chosenWord) ⋀ word.length === chosenWord.length then
+	    return TRUE
+    end if
+    return FALSE
+end function
+
+function syllablesCounter(word)
+    word = toLowerCase(word)
+        if length(word) <= 3
+            return 1
+        end if 
+    word = replace(word, aeiouAEIOU, "")
+    word = replace(word, "y", "")
+    syllablesMatches = match(word, aeiouy{1,2})
+    return length(syllableMatches)
+end function
+    
+function userInput(queue, feminineQueue, exactQueue)
+    Print "Type in the word you want to check or type 'exit' to quit: "
+    chosenWord = read input from user 
+    if chosenWord LowerCase() = exit then
+        close program
+        return
+    end if
+    	if invalidWord(chosenWord) then 
+        		userInput(queue, feminineQueue, exactQueue)
+        		return
+    	end if 
+        call addWord(queue, chosenWord)
+    	call addFeminineWord(feminineQueue, chosenWord)
+    	call addExactWord(exactQueue, chosenWord)
+    	call displayWords(queue, chosenWord)
+    	call displayFeminineWords(feminineQueue, chosenWord)
+    	call displayExactWords(exactQueue, chosenWord)
+    	call userInput(queue, feminineQueue)
+end function
+
+function invalidWord(chosenWord)
+    if not chosenWord then
+        print "Invalid input. please enter a valid word"
+        return TRUE
+    end if
+    return FALSE
+end function
+
+function addWord(queue, chosenWord)
+    for 0 < i < wordlist2.length do
+        word <- wordlist2[i]
+        if wordsThatRhyme(word, chosenWord) do
+            ENQUEUE(word)
+        end if
+    end for
+end function
+
+function addFeminineWord(feminineQueue, chosenWord)
+    for 0 < i < wordlist2.length do
+    word  wordlist2[i]
+        if feminineRhymes(word, chosenWord) do
+            ENQUEUE(word)
+        end if
+    end for
+end function
+
+function addExactWord(exactQueue, chosenWord)
+    for 0 < i < wordlist2.length do 
+    word  wordlist2[i]
+        if exactRhymes(word, chosenWord) do
+            ENQUEUE(word)
+        end if
+    end for
+end function
+
+function displayWords(queue, chosenWord)
+    if not queue.isEmpty then
+        print "words that rhyme ", chosenWord ':'
+        amount <- 0
+        while not queue.isEmpty then
+            print queue.dequeue
+            amount = amount + 1
+        end while
+        print "number of masculine words of found: ", amount
+    else
+        print "cannot find any masculine word that rhyme with", chosenWord
+    end if
+end function
+
+function displayFeminineWords(feminineQueue, chosenWord)
+    if not feminineQueue.isEmpty then
+        print "words that rhyme with" chosenWord
+        amount <- 0
+    while not feminineQueue.isEmpty then
+        print feminineQueue.dequeue
+        amount = amount + 1
+    end while
+        print “number of feminine words found”, amount
+    else
+        print cannot find any feminine words that rhyme with chosenWord
+    end if
+end function
+
+function displayExactWords(exactQueue, chosenWord)
+    if not exactQueue.isEmpty then
+        print "Words that rhyme with" chosenWord
+        amount <- 0
+        while not exactQueue.isEmpty then
+            print exactQueue.dequeue
+            amount <- amount + 1
+        end while
+    print "Number of exact words found, amount"
+    else
+    print " cannot find any exact words that rhyme with chosenWord
+    end if
+end function
+
+function startProcess
+    new queue[queue]
+    new queue[feminineQueue]
+    new queue[exactQueue]
+    print "Welcome to the Rhyme Finder"
+    call userInput(queue, feminineQueue, exactQueue)
+end function
+
+call startProcess()
+
+
