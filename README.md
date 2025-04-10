@@ -1,4 +1,4 @@
-# Poetry Assistant Data Structures and Algorithm - Rhyme suggestion 
+# Poetry Assistant Data Structures and Algorithm - Rhyme suggestion 🎼
 
 # Overview
 
