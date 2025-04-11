@@ -7,6 +7,9 @@ A simple Node.js command-line application that analyzes and finds rhyming words 
 * wordlist2.txt: A dictionary of words used for rhyme matching.
 * pseudocode.txt: Pseudocode documentation outlining the logic for all core functions.
 
+# 📼 Video demo of the application 
+[Demo Video](https://www.youtube.com/watch?v=QcO1LgaBglI)
+
 # 🚀 Features
 Takes user input from the terminal and checks for rhyming words.
 Categorizes rhymes:
